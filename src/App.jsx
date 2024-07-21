@@ -1,10 +1,11 @@
 import React from "react";
-import BossTracker from "./components/BossTracker";
+import BossTracker from "./assets/components/BossTracker";
+
 
 const App = () => {
   return (
     <div>
-      <BossTracker />
+      <BossTracker></BossTracker>
     </div>
   );
 };
