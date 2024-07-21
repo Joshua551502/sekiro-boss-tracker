@@ -12,16 +12,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
 .container {
-  width: 90%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 30px;
   background-color: #2B3A42;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
 .title {
@@ -42,19 +43,24 @@ body {
   justify-content: space-between;
   padding: 15px;
   border-bottom: 1px solid #4A2E24;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
   cursor: pointer;
+}
+
+.boss-item.defeated {
+  background-color: #3A5A40;
+  color: #9B2D30;
 }
 
 .boss-item:hover {
   background-color: #4A2E24;
+  transform: scale(1.02);
 }
 
 .boss-name {
   flex: 1;
   display: flex;
   align-items: center;
-  /* border: 1px solid #fff; */
   margin-right: 30px;
   min-width: 300px;
 }
@@ -65,7 +71,7 @@ body {
   margin-right: 10px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #4A2E24;
+  border: 2px solid #E97451;
 }
 
 .button-group {
@@ -82,6 +88,7 @@ body {
   border-radius: 5px;
   margin: 0 10px;
   padding: 5px;
+  transition: background-color 0.3s;
 
   -moz-appearance: textfield;
 }
@@ -92,19 +99,24 @@ body {
   margin: 0;
 }
 
+.count-input:focus {
+  background-color: #3A5A40;
+}
+
 .button {
-  background-color: #9B2D30;
+  background-color: #E97451;
   border: none;
-  color: #DAD4CC;
+  color: #1C1C1C;
   padding: 10px 15px;
   margin: 0 5px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .button:hover {
-  background-color: #7E191B;
+  background-color: #FF7B00;
+  transform: translateY(-3px);
 }
 
 .button:disabled {
@@ -117,35 +129,24 @@ body {
   width: 100%;
 }
 
-.reset-button {
-  background-color: #7E191B;
-  border: none;
-  color: #DAD4CC;
-  padding: 10px 20px;
-  margin: 20px 0;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  font-family: 'Mantinia Regular', Arial, sans-serif;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
+.reset-button,
 .reset-button-2 {
   background-color: #7E191B;
   border: none;
   color: #DAD4CC;
   padding: 10px 20px;
-  margin: 20px 0;
+  margin: 10px 0;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
   font-family: 'Mantinia Regular', Arial, sans-serif;
-  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.reset-button:hover {
+.reset-button:hover,
+.reset-button-2:hover {
   background-color: #5D3A58;
 }
 
@@ -159,18 +160,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .modal-content {
@@ -200,6 +189,11 @@ body {
   color: #DAD4CC;
   font-size: 24px;
   cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #FF7B00;
 }
 
 .modal .button {
@@ -213,7 +207,7 @@ body {
 }
 
 .modal .button:hover {
-  color: #E97451;
+  color: #FF7B00;
 }
 
 .modal .button-group {
@@ -241,7 +235,7 @@ body {
   margin: 10px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .confirmation-modal .modal-button:hover {
@@ -258,8 +252,8 @@ body {
 .total-deaths {
   text-align: center;
   margin: 20px 0;
-  font-size: 1.2em;
-  color: #E97451;
+  font-size: 1.5em;
+  color: #FF7B00;
 }
 
 .toggle-button {
@@ -270,7 +264,7 @@ body {
   margin: 20px 0;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
   font-family: 'Mantinia Regular', Arial, sans-serif;
   position: relative;
   left: 50%;
@@ -284,4 +278,23 @@ body {
 .title-items {
   display: flex;
   flex-direction: column;
+}
+
+.immortality-severed-button {
+  background-color: #E97451;
+  border: none;
+  color: #1C1C1C;
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-family: 'Mantinia Regular', Arial, sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.immortality-severed-button:hover {
+  background-color: #FF7B00;
 }

@@ -34,6 +34,7 @@ const bosses = [
 
 const BossTracker = () => {
   const [deathCounts, setDeathCounts] = useState({});
+  const [defeatedBosses, setDefeatedBosses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBoss, setSelectedBoss] = useState(null);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
@@ -42,11 +43,17 @@ const BossTracker = () => {
   useEffect(() => {
     const storedCounts = JSON.parse(localStorage.getItem("deathCounts")) || {};
     setDeathCounts(storedCounts);
+    const storedDefeated = JSON.parse(localStorage.getItem("defeatedBosses")) || [];
+    setDefeatedBosses(storedDefeated);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("deathCounts", JSON.stringify(deathCounts));
   }, [deathCounts]);
+
+  useEffect(() => {
+    localStorage.setItem("defeatedBosses", JSON.stringify(defeatedBosses));
+  }, [defeatedBosses]);
 
   useEffect(() => {
     if (isModalOpen || isResetModalOpen || isGlobalResetModalOpen) {
@@ -152,6 +159,14 @@ const BossTracker = () => {
     }
   };
 
+  const handleImmortalitySevered = () => {
+    if (defeatedBosses.includes(selectedBoss.name)) {
+      setDefeatedBosses((prev) => prev.filter((boss) => boss !== selectedBoss.name));
+    } else {
+      setDefeatedBosses((prev) => [...prev, selectedBoss.name]);
+    }
+  };
+
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -164,7 +179,7 @@ const BossTracker = () => {
         {bosses.map((boss) => (
           <li
             key={boss.name}
-            className="boss-item"
+            className={`boss-item ${defeatedBosses.includes(boss.name) ? 'defeated' : ''}`}
             onClick={() => openModal(boss)}
           >
             <span className="boss-name">
@@ -248,6 +263,14 @@ const BossTracker = () => {
               Press <strong>Space</strong> to add one, <strong>D</strong> to go
               back one.
             </p>
+            <button
+              className="immortality-severed-button"
+              onClick={handleImmortalitySevered}
+            >
+              {defeatedBosses.includes(selectedBoss.name)
+                ? 'UNDO IMMORTALITY SEVERED'
+                : 'IMMORTALITY SEVERED'}
+            </button>
             <button className="reset-button-2" onClick={openResetModal}>
               RESET
             </button>
