@@ -12,37 +12,41 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin: 0;
+  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 }
 
 .container {
   width: 95%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px;
+  max-width: 600px;
+  margin: 20px auto; /* Added margin to prevent touching the edges */
+  padding: 20px;
   background-color: #2B3A42;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
   text-align: center;
   color: #E97451;
-  font-size: 3em;
+  font-size: 2em;
   margin-bottom: 20px;
 }
 
 .boss-list {
   list-style-type: none;
   padding: 0;
+  width: 100%;
 }
 
 .boss-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 10px;
   border-bottom: 1px solid #4A2E24;
   transition: background-color 0.2s, transform 0.2s;
   cursor: pointer;
@@ -62,8 +66,7 @@ body {
   flex: 1;
   display: flex;
   align-items: center;
-  margin-right: 30px;
-  min-width: 300px;
+  margin-right: 10px;
 }
 
 .boss-image {
@@ -81,13 +84,13 @@ body {
 }
 
 .count-input {
-  width: 50px;
+  width: 40px;
   text-align: center;
   background-color: #2B3A42;
   color: #DAD4CC;
   border: 1px solid #4A2E24;
   border-radius: 5px;
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 5px;
   transition: background-color 0.3s;
 
@@ -108,7 +111,7 @@ body {
   background-color: #E97451;
   border: none;
   color: #1C1C1C;
-  padding: 10px 15px;
+  padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
   border-radius: 5px;
@@ -123,11 +126,6 @@ body {
 .button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-.reset-button-container {
-  position: relative;
-  width: 100%;
 }
 
 .reset-button,
@@ -149,6 +147,25 @@ body {
 .reset-button:hover,
 .reset-button-2:hover {
   background-color: #5D3A58;
+}
+
+.immortality-severed-button {
+  background-color: #E97451;
+  border: none;
+  color: #1C1C1C;
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-family: 'Mantinia Regular', Arial, sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.immortality-severed-button:hover {
+  background-color: #FF7B00;
 }
 
 .modal {
@@ -177,7 +194,7 @@ body {
 
 .modal-content {
   background: #2B3A42;
-  padding: 30px 30px 30px 30px;
+  padding: 30px;
   border-radius: 10px;
   text-align: center;
   position: relative;
@@ -265,8 +282,13 @@ body {
 .total-deaths {
   text-align: center;
   margin: 20px 0;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #FF7B00;
+}
+
+.title-items {
+  display: flex;
+  flex-direction: column;
 }
 
 .toggle-button {
@@ -288,26 +310,16 @@ body {
   background-color: #3A5A40;
 }
 
-.title-items {
-  display: flex;
-  flex-direction: column;
-}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    max-width: 100%;
+    padding: 10px;
+  }
 
-.immortality-severed-button {
-  background-color: #E97451;
-  border: none;
-  color: #1C1C1C;
-  padding: 10px 20px;
-  margin: 10px 0;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.3s;
-  font-family: 'Mantinia Regular', Arial, sans-serif;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.immortality-severed-button:hover {
-  background-color: #FF7B00;
+  .button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
