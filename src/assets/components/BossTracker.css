@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   margin: 0;
 }
 
@@ -49,7 +50,7 @@ body {
 
 .boss-item.defeated {
   background-color: #3A5A40;
-  color: #9B2D30;
+  color: #E97451;
 }
 
 .boss-item:hover {
@@ -160,11 +161,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .modal-content {
   background: #2B3A42;
-  padding: 30px;
+  padding: 30px 30px 30px 30px;
   border-radius: 10px;
   text-align: center;
   position: relative;

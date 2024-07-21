@@ -14,6 +14,7 @@ import DivineDragon from "../../assets/images/divine_dragon.jpg";
 import OwlFather from "../../assets/images/owl_father.jpg";
 import DemonOfHatred from "../../assets/images/demon_of_hatred.jpg";
 import IsshinTheSwordSaint from "../../assets/images/isshin_the_sword_saint.jpg";
+import confetti from "canvas-confetti";
 
 const bosses = [
   { name: "Gyoubu Oniwa", image: GyoubuOniwa, emoji: "⚔️" },
@@ -81,6 +82,7 @@ const BossTracker = () => {
       ...prevCounts,
       [boss]: 0,
     }));
+    setDefeatedBosses((prev) => prev.filter((b) => b !== boss));
   };
 
   const resetAllCounts = () => {
@@ -89,6 +91,7 @@ const BossTracker = () => {
       resetCounts[boss.name] = 0;
     });
     setDeathCounts(resetCounts);
+    setDefeatedBosses([]);
     setIsGlobalResetModalOpen(false);
   };
 
@@ -164,6 +167,12 @@ const BossTracker = () => {
       setDefeatedBosses((prev) => prev.filter((boss) => boss !== selectedBoss.name));
     } else {
       setDefeatedBosses((prev) => [...prev, selectedBoss.name]);
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#E97451', '#FF7B00', '#DAD4CC', '#7E191B'],
+      });
     }
   };
 
